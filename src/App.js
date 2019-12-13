@@ -1,12 +1,15 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import {Route, Switch} from 'react-router-dom'
+//Pages 
+import Login from './pages/login/login.js'
 
 function App() {
   return (
     <div className="App">
-       <Button variant="contained" color="primary">
-          Hello World
-      </Button>
+       <Switch>
+        <Route exact path="/login" component={Login} ></Route>
+      </Switch>
     </div>
   );
 }
