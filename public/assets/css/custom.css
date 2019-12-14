@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Arvo:700);
+@import url(https://fonts.googleapis.com/css?family=Seaweed+Script);
 @font-face {
   font-family: Poppins-Bold;
   src: url("/assets/fonts/poppins/Poppins-Bold.ttf");
@@ -72,4 +74,33 @@
   align-items: center;
   padding: 0 25px;
   transition: all 0.4s;
+}
+
+.menuComp .trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.menuComp .sider {
+  min-height: 100vh;
+}
+
+.menuComp .logo .script {
+  font-family: "Seaweed Script";
+  color: #fff;
+  text-align: center;
+  font-size: 40px;
+  position: relative;
+  margin: 0;
+}
+
+.menuComp .logo .script span {
+  padding: 0 0.3em;
+}
+
+.menuComp .content {
+  margin: 24px 16px;
 }
