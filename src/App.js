@@ -6,7 +6,7 @@ import Login from './pages/login/login.js'
 import Main from './pages/main/main.js'
 import AddQuestion from './pages/question/addQuestion.js'
 import Exam from './pages/exam/exam.js'
-
+import Report from './pages/report/report.js'
 
 
 import { Layout, Menu, Icon, Row, Col, Dropdown } from 'antd';
@@ -26,6 +26,8 @@ class App extends Component {
          return ( this.setState({menuKey: 2}))
         case '/exam' :
          return ( this.setState({menuKey: 3}))
+        case '/report' :
+         return ( this.setState({menuKey: 4}))
         default :
           return ( this.setState({menuKey: 1}))
 
@@ -67,8 +69,7 @@ class App extends Component {
                     <NavLink to="exam"><Icon type="edit" /><span>Sınav</span></NavLink>
                   </Menu.Item>
                   <Menu.Item key="4">
-                    <Icon type="pie-chart" />
-                    <span>Raporlar</span>
+                     <NavLink to="report"> <Icon type="pie-chart" /> <span>Raporlar</span></NavLink>
                   </Menu.Item>
                   <Menu.Item key="5">
                     <Icon type="setting" />
@@ -94,7 +95,7 @@ class App extends Component {
                   <Route exact path="/" component={Main} ></Route>
                   <Route exact path="/addQuestion" component={AddQuestion} ></Route>
                   <Route exact path="/exam" component={Exam} ></Route>
-
+                   <Route exact path="/report" component={Report} ></Route>
                 </Switch>
               </Content>
           </Layout>
