@@ -59,16 +59,12 @@ class App extends Component {
               </div>
               <Menu theme="dark" mode="inline" selectedKeys={[this.state.menuKey.toString()]} onSelect={this.setMenuActive}>
                   <Menu.Item key="1">
-                    <Icon type="home" />
-                    <NavLink to="/">Anasayfa</NavLink>
-                  </Menu.Item>
+                    <NavLink to="/"> <Icon type="home" /> <span>Anasayfa</span></NavLink> </Menu.Item>
                   <Menu.Item key="2">
-                    <Icon type="file-add" />
-                    <NavLink to="addQuestion">Soru Ekle</NavLink>
+                    <NavLink to="addQuestion"><Icon type="file-add" /> <span>Soru Ekle</span></NavLink>
                   </Menu.Item>
                   <Menu.Item key="3">
-                    <Icon type="edit" />
-                    <NavLink to="exam">Sınav</NavLink>
+                    <NavLink to="exam"><Icon type="edit" /><span>Sınav</span></NavLink>
                   </Menu.Item>
                   <Menu.Item key="4">
                     <Icon type="pie-chart" />
