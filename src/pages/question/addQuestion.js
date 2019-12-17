@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Form, Icon, Input, Button, Row, Col, Select, Upload  } from 'antd';
+import { Card, Form, Icon, Input, Button, Select, Upload  } from 'antd';
 
 const { TextArea } = Input
 const { Option } = Select

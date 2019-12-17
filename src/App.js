@@ -5,6 +5,8 @@ import 'antd/dist/antd.css';
 import Login from './pages/login/login.js'
 import Main from './pages/main/main.js'
 import AddQuestion from './pages/question/addQuestion.js'
+import Exam from './pages/exam/exam.js'
+
 
 
 import { Layout, Menu, Icon, Row, Col, Dropdown } from 'antd';
@@ -22,7 +24,15 @@ class App extends Component {
           return ( this.setState({menuKey: 1}))
         case '/addQuestion' :
          return ( this.setState({menuKey: 2}))
+        case '/exam' :
+         return ( this.setState({menuKey: 3}))
+        default :
+          return ( this.setState({menuKey: 1}))
+
       }
+    }
+    componentDidMount(){
+      this.setMenuActive()
     }
     toggle = () => {
         this.setState({ collapsed: !this.state.collapsed });
@@ -58,7 +68,7 @@ class App extends Component {
                   </Menu.Item>
                   <Menu.Item key="3">
                     <Icon type="edit" />
-                    <span>Sınav</span>
+                    <NavLink to="exam">Sınav</NavLink>
                   </Menu.Item>
                   <Menu.Item key="4">
                     <Icon type="pie-chart" />
@@ -87,6 +97,8 @@ class App extends Component {
                 <Switch>
                   <Route exact path="/" component={Main} ></Route>
                   <Route exact path="/addQuestion" component={AddQuestion} ></Route>
+                  <Route exact path="/exam" component={Exam} ></Route>
+
                 </Switch>
               </Content>
           </Layout>
