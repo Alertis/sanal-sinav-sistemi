@@ -33,7 +33,10 @@ class App extends Component {
 
       }
     }
-    componentDidMount(){
+    componentWillMount(){
+      let authorization = localStorage.getItem('authorization')
+      if((authorization === undefined || authorization === "" || authorization === null) && (window.location.pathname !== "/login"))
+        window.location.href="/login"
       this.setMenuActive()
     }
     toggle = () => {
