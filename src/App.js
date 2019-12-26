@@ -54,11 +54,15 @@ class App extends Component {
     toggle = () => {
         this.setState({ collapsed: !this.state.collapsed });
     };
+    logout = () => {
+       localStorage.removeItem("authorization")
+       window.location.href="/login"
+    }
     render(){
       const menu = (
         <Menu>
           <Menu.Item key="0">
-            <a>Çıkış Yap</a>
+             <a onClick={this.logout}>Çıkış Yap</a>
           </Menu.Item>
         </Menu>
       );
@@ -96,7 +100,7 @@ class App extends Component {
                     <Col span={4}>
                       <Dropdown overlay={menu} trigger={['click']}>
                       <a className="ant-dropdown-link" href="#">
-                          Osman Yavuz Demir <Icon type="down" />
+                         {localStorage.getItem('username')} <Icon type="down" />
                         </a>
                       </Dropdown>
                     </Col>

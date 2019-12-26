@@ -26,6 +26,8 @@ class Login extends Component {
            this.setState({loading: nextState.Login.loading})
             if(nextState.Login.user.status === 200){
                 localStorage.setItem('authorization', nextState.Login.user.data.token)
+                localStorage.setItem('username', nextState.Login.user.data.username)
+                localStorage.setItem('role', nextState.Login.user.data.role[0])
                 this.props.history.push("/")
             }else{
                 nextState.Login.reject && this.setState({error: "Kullanıcı adı veya şifre yanlış"})
