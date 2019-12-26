@@ -22,6 +22,7 @@ export default (state = initialState, action) => {
             }
         case FETCH_QUESTIONS_REJECTED:
             localStorage.removeItem("authorization")
+            window.location.href="/login"
             return {
                 ...state,
                 loading : false,

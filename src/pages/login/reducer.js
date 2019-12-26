@@ -21,6 +21,7 @@ export default (state = initialState, action) => {
             }
         case LOGIN_REJECTED:
             localStorage.removeItem("authorization")
+            window.location.href="/login"
             return {
                 ...state,
                 loading : false,
