@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, Switch, NavLink} from 'react-router-dom'
+import {Route, Switch, NavLink, Redirect} from 'react-router-dom'
 import 'antd/dist/antd.css';
 //Pages 
 import Login from './pages/login/login.js'
@@ -9,13 +9,15 @@ import Exam from './pages/exam/exam.js'
 import Report from './pages/report/report.js'
 
 
+
 import { Layout, Menu, Icon, Row, Col, Dropdown } from 'antd';
 
 const { Header, Sider, Content } = Layout;
 class App extends Component {
     state = {
        collapsed: true,
-       menuKey: 1
+       menuKey: 1,
+       logout: false
     };
     setMenuActive = () => {
       let menu=0;
@@ -36,7 +38,7 @@ class App extends Component {
     componentWillMount(){
       let authorization = localStorage.getItem('authorization')
       if((authorization === undefined || authorization === "" || authorization === null) && (window.location.pathname !== "/login"))
-        window.location.href="/login"
+       this.setState({logout: true})
       this.setMenuActive()
     }
     toggle = () => {
@@ -98,14 +100,14 @@ class App extends Component {
                   <Route exact path="/" component={Main} ></Route>
                   <Route exact path="/addQuestion" component={AddQuestion} ></Route>
                   <Route exact path="/exam" component={Exam} ></Route>
-                   <Route exact path="/report" component={Report} ></Route>
+                  <Route exact path="/report" component={Report} ></Route>
                 </Switch>
               </Content>
           </Layout>
         </Layout>
       
        }
-       
+       { this.state.logout && <Redirect to="/login" />}
     </div>
   );
     }

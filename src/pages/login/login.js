@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Card, Form, Icon, Input, Button, Spin, Alert, Divider } from 'antd';
 import {connect} from 'react-redux'
+import { Card, Form, Icon, Input, Button, Spin, Alert, Divider } from 'antd';
+
 
 import {loginCheck} from './action'
 
@@ -24,8 +25,8 @@ class Login extends Component {
        if(nextState.Login){
            this.setState({loading: nextState.Login.loading})
             if(nextState.Login.user.status === 200){
-                localStorage.setItem('authorization', nextState.Login.user.data.refresh_token)
-                window.location.href="/"
+                localStorage.setItem('authorization', nextState.Login.user.data.token)
+                this.props.history.push("/")
             }else{
                 nextState.Login.reject && this.setState({error: "Kullanıcı adı veya şifre yanlış"})
             }  
@@ -82,7 +83,6 @@ const mapStateToProps = ({Login}) => {
 	}
 };
 
-//actionları props a çeviriyor
 const mapDispatchToProps = {
     loginCheck
 };
