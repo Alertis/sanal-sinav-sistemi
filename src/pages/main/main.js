@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 
-import {fetchQuestions} from './action'
+import {fetchQuestions} from '../question/action'
  
 class Main extends Component {
     componentDidMount(){
