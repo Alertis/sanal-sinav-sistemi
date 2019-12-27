@@ -33,7 +33,7 @@ class Questions extends Component {
                         <span>
                             <Link to={"/editQuestion/"+data.id}>Düzenle</Link>
                             <Divider type="vertical" />
-                            <a>Sil</a>
+                            <Link onClick={() => this.props.delete(data.id)}> Sil </Link>
                         </span>
                     )}
                     />
