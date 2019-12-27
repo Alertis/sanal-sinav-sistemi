@@ -5,6 +5,7 @@ import 'antd/dist/antd.css';
 import Login from './pages/login/login.js'
 import Main from './pages/main/main.js'
 import AddQuestion from './pages/question/addQuestion.js'
+import EditQuestion from './pages/question/editQuestion.js'
 import Exam from './pages/exam/exam.js'
 import Report from './pages/report/report.js'
 
@@ -31,6 +32,7 @@ class App extends Component {
     };
     setMenuActive = () => {
       let menu=0;
+      
       switch(window.location.pathname){
         case '/' :
           return ( this.setState({menuKey: 1}))
@@ -117,9 +119,15 @@ class App extends Component {
                     
                     <PrivateRoute  exact path="/" component={Main} ></PrivateRoute >
                     {localStorage.getItem("role") === "ROLE_TEACHER" ? 
-                      <PrivateRoute  exact path="/addQuestion" component={AddQuestion} ></PrivateRoute >
+                      <>
+                        <PrivateRoute  exact path="/addQuestion" component={AddQuestion} ></PrivateRoute >
+                        <PrivateRoute  exact path="/editQuestion/:id" component={EditQuestion} ></PrivateRoute >
+
+                      </>
                     :
-                      <PrivateRoute  exact path="/exam" component={Exam} ></PrivateRoute >
+                      <>
+                        <PrivateRoute  exact path="/exam" component={Exam} ></PrivateRoute >
+                      </>
                     }
                     <PrivateRoute  exact path="/report" component={Report} ></PrivateRoute >
                   

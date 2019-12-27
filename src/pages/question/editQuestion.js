@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import { Card, Form, Icon, Input, Button, Select, Alert, Spin   } from 'antd';
-import {addQuestion} from './action'
+import {editQuestion, fetchQuestionDetail} from './action'
 
 
 const { TextArea } = Input
 const { Option } = Select
 class AddQuestion extends Component {
    state={
+       id: this.props.match.params.id ? this.props.match.params.id : 0,
        questionText:"",
        answer1: "",
        answer2: "",
@@ -17,7 +18,7 @@ class AddQuestion extends Component {
        subject:"",
        error: false,
        status: false,
-       loading: false,
+       loading: true,
    }
    handleChange = (e) =>{
        e.target ? this.setState({[e.target.name]: e.target.value}) 
@@ -40,15 +41,29 @@ class AddQuestion extends Component {
                 subject:this.state.subject
             }
            this.setState({error: false})
-           this.props.addQuestion(question)
+           this.props.editQuestion(question)
        }
    }
    componentDidMount(){
-       this.state.id > 0 && this.props.fetchQuestionDetail(this.state.id)
+       this.state.id > 0 ? this.props.fetchQuestionDetail(this.state.id) : console.log("redirect")
    }
    componentWillReceiveProps(nextState){
-       if(nextState.Questions.questions){
-           this.setState({status: true, loading: nextState.Questions.loading, questionText:"", answer1: "", answer2: "", answer3: "", answer4: "", trueAnswer: "", subject:"",});
+      if(nextState.Questions.status){
+           this.setState({status: true});
+       }
+       if(Object.keys(nextState.Questions.questionDetail).length>0){
+           console.log(nextState)
+           this.setState({
+                loading: nextState.Questions.loading,
+                questionText: nextState.Questions.questionDetail.questionText,
+                answer1: nextState.Questions.questionDetail.choices[0].choice1,
+                answer2: nextState.Questions.questionDetail.choices[1].choice1,
+                answer3: nextState.Questions.questionDetail.choices[2].choice1,
+                answer4: nextState.Questions.questionDetail.choices[3].choice1, 
+                trueAnswer: nextState.Questions.questionDetail.rightAnswerIndex,
+                subject: nextState.Questions.questionDetail.subject.name
+            });
+
        } 
    }
     render() {
@@ -106,7 +121,7 @@ const mapStateToProps = ({Questions}) => {
 };
 
 const mapDispatchToProps = {
-    addQuestion
+    fetchQuestionDetail
 };
 
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {Link} from 'react-router-dom'
 import { Table, Divider, Tag, Spin, Icon } from 'antd';
 
 const { Column, ColumnGroup } = Table 
@@ -29,9 +29,9 @@ class Questions extends Component {
                                 </Tag>
                         </span>
                     )}/>
-                    <Column title="İşlemler" key="action" render={() => (
+                    <Column title="İşlemler" key="action" render={(data) => (
                         <span>
-                            <a>Düzenle</a>
+                            <Link to={"/editQuestion/"+data.id}>Düzenle</Link>
                             <Divider type="vertical" />
                             <a>Sil</a>
                         </span>
