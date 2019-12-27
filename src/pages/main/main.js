@@ -3,6 +3,9 @@ import {connect} from 'react-redux'
 
 import { Table, Divider, Tag, Spin, Icon } from 'antd';
 import {fetchQuestions} from '../question/action'
+import Questions from './components/questions'
+import Exams from './components/exams'
+
 
 const { Column, ColumnGroup } = Table 
 class Main extends Component {
@@ -19,35 +22,10 @@ class Main extends Component {
     render() {
         return(
             <div className="mainPage">
-             
-                    <Table dataSource={this.state.questions} loading={this.state.loading } style={{backgroundColor:"white"}}>
-                        <Column title="Soru" dataIndex="questionText" key="questionText" />
-                        <Column title="Cevaplar" dataIndex="choices" key="choices" render={(choices, {rightAnswerIndex}) => (
-                            <span>
-                                {choices.map((choice,i) => (
-                                    <Tag color={i === (rightAnswerIndex-1) ? "green" : "red"} key={choice.choice1}>
-                                        {choice.choice1}
-                                    </Tag>
-                                ))}
-                            </span>
-                        )}/>
-                        <Column title="Kategori" dataIndex="subject" key="subject" render={(subject) => (
-                            <span>
-                                    <Tag color={"blue"} key={subject.name}>
-                                        {subject.name}
-                                    </Tag>
-                            </span>
-                        )}/>
-                        <Column title="İşlemler" key="action" render={() => (
-                            <span>
-                                <a>Düzenle</a>
-                                <Divider type="vertical" />
-                                <a>Sil</a>
-                            </span>
-                        )}
-                        />
-                    </Table>
-                
+                {localStorage.getItem("role") === "ROLE_TEACHER" ? 
+                    <Questions questions={this.state.questions} loading={this.state.loading} /> :
+                    <Exams />
+                }
             </div>
            
         );

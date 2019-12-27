@@ -76,14 +76,19 @@ class App extends Component {
                     <p class="script"><span>{ this.state.collapsed ? "SSS" : "Sanal Sınav Sistemi"} </span></p>
                 </div>
                 <Menu theme="dark" mode="inline" selectedKeys={[this.state.menuKey.toString()]} onSelect={this.setMenuActive}>
+                    
                     <Menu.Item key="1">
-                      <NavLink to="/"> <Icon type="home" /> <span>Anasayfa</span></NavLink> </Menu.Item>
-                    <Menu.Item key="2">
-                      <NavLink to="addQuestion"><Icon type="file-add" /> <span>Soru Ekle</span></NavLink>
+                      <NavLink to="/"> <Icon type="home" /> <span>Anasayfa</span></NavLink>
                     </Menu.Item>
-                    <Menu.Item key="3">
-                      <NavLink to="exam"><Icon type="edit" /><span>Sınav</span></NavLink>
-                    </Menu.Item>
+                    {localStorage.getItem("role") === "ROLE_TEACHER" ? 
+                      <Menu.Item key="2">
+                        <NavLink to="addQuestion"><Icon type="file-add" /> <span>Soru Ekle</span></NavLink>
+                      </Menu.Item>
+                    :
+                      <Menu.Item key="3">
+                        <NavLink to="exam"><Icon type="edit" /><span>Sınav</span></NavLink>
+                      </Menu.Item>
+                    }
                     <Menu.Item key="4">
                       <NavLink to="report"> <Icon type="pie-chart" /> <span>Raporlar</span></NavLink>
                     </Menu.Item>
@@ -111,8 +116,11 @@ class App extends Component {
                  
                     
                     <PrivateRoute  exact path="/" component={Main} ></PrivateRoute >
-                    <PrivateRoute  exact path="/addQuestion" component={AddQuestion} ></PrivateRoute >
-                    <PrivateRoute  exact path="/exam" component={Exam} ></PrivateRoute >
+                    {localStorage.getItem("role") === "ROLE_TEACHER" ? 
+                      <PrivateRoute  exact path="/addQuestion" component={AddQuestion} ></PrivateRoute >
+                    :
+                      <PrivateRoute  exact path="/exam" component={Exam} ></PrivateRoute >
+                    }
                     <PrivateRoute  exact path="/report" component={Report} ></PrivateRoute >
                   
                 </Content>
