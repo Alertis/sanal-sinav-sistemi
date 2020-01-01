@@ -5,7 +5,6 @@ import 'antd/dist/antd.css';
 import Login from './pages/login/login.js'
 import Main from './pages/main/main.js'
 import AddQuestion from './pages/question/addQuestion.js'
-import EditQuestion from './pages/question/editQuestion.js'
 import Exam from './pages/exam/exam.js'
 import Report from './pages/report/report.js'
 
@@ -121,7 +120,6 @@ class App extends Component {
                     {localStorage.getItem("role") === "ROLE_TEACHER" ? 
                       <>
                         <PrivateRoute  exact path="/addQuestion" component={AddQuestion} ></PrivateRoute >
-                        <PrivateRoute  exact path="/editQuestion/:id" component={EditQuestion} ></PrivateRoute >
 
                       </>
                     :

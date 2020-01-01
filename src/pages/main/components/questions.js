@@ -31,8 +31,6 @@ class Questions extends Component {
                     )}/>
                     <Column title="İşlemler" key="action" render={(data) => (
                         <span>
-                            <Link to={"/editQuestion/"+data.id}>Düzenle</Link>
-                            <Divider type="vertical" />
                             <Link onClick={() => this.props.delete(data.id)}> Sil </Link>
                         </span>
                     )}
