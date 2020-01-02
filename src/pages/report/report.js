@@ -47,7 +47,7 @@ class Report extends Component {
          for(let i=0; i<nextState.Report.reports.length; i++){
            timeData.push({
              name: nextState.Report.reports[i].examDate,
-             uv: nextState.Report.reports[i].score
+             puan: nextState.Report.reports[i].score
            })
          }
         this.setState({timeData})
@@ -77,7 +77,7 @@ class Report extends Component {
                                 <YAxis />
                                 <Tooltip />
                                 <Legend />
-                                <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                                <Line type="monotone" dataKey="puan" stroke="#82ca9d" />
                             </LineChart>
                         </TabPane>
                         <TabPane tab={ <span> <Icon type="bar-chart" /> Kategori Grafiği </span> } key="2" >

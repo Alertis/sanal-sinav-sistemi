@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 
 import { Table, Divider, Tag, Spin, Icon } from 'antd';
 import {fetchQuestions, deleteQuestion} from '../question/action'
+import {fetchReports} from '../report/action'
 import Questions from './components/questions'
 import Exams from './components/exams'
 
@@ -10,11 +11,13 @@ import Exams from './components/exams'
 const { Column, ColumnGroup } = Table 
 class Main extends Component {
     state = {
+        reports: [],
         questions : [],
         loading: false,
     }
     componentDidMount(){
         this.props.fetchQuestions();
+        this.props.fetchReports();
     }
     componentWillReceiveProps(nextState){
         if(nextState.Questions){
@@ -23,6 +26,10 @@ class Main extends Component {
                 this.props.fetchQuestions();
             }
         }
+        if(nextState.Report){
+            this.setState({reports: nextState.Report.reports, loading: nextState.Report.loading})
+        }
+        
 
     }
     deleteQuestion = (id) =>{
@@ -33,7 +40,7 @@ class Main extends Component {
             <div className="mainPage">
                 {localStorage.getItem("role") === "ROLE_TEACHER" ? 
                     <Questions questions={this.state.questions} loading={this.state.loading} delete={this.deleteQuestion} /> :
-                    <Exams />
+                    <Exams data={this.state.reports} loading={this.state.loading} />
                 }
             </div>
            
@@ -41,14 +48,14 @@ class Main extends Component {
     }
 } 
 
-const mapStateToProps = ({Questions}) => {
+const mapStateToProps = ({Questions, Report}) => {
 	return {
-        Questions
+        Questions, Report
 	}
 };
 
 const mapDispatchToProps = {
-    fetchQuestions, deleteQuestion
+    fetchQuestions, deleteQuestion, fetchReports
 };
 
 

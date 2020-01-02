@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Card, Pagination, Typography, Button, Row, Col, Divider, Icon, Spin, Modal, Statistic } from 'antd';
-import {fetchExam} from './action';
+import {fetchExam, updateExam} from './action';
 import {addExam} from '../report/action';
-
+import moment from 'moment'
 import {connect} from 'react-redux'
 
 const { Title } = Typography;
@@ -48,8 +48,10 @@ class Exam extends Component {
        let trueAnswer=0
        let falseAnswer = 0
        for(let i = 0; i < this.state.questions.questions.length; i++){
-           if(this.state.questions.questions[i].rightAnswerIndex === this.state.answers[i])
+           if(this.state.questions.questions[i].rightAnswerIndex === this.state.answers[i]){
                 trueAnswer = trueAnswer + 1;
+                this.props.updateExam(this.state.questions.questions[i].id)
+           }
             else
                 falseAnswer = falseAnswer + 1
        }
@@ -60,7 +62,7 @@ class Exam extends Component {
            countOfTrueAnswers:this.state.trueAnswer,
            countOfFalseAnswers:this.state.falseAnswer,
            score:this.state.trueAnswer*2,
-           examDate: Date.now(),
+           examDate: moment().format("YYYY-MM-DD HH:mm:ss"),
            user: localStorage.getItem("username") 
        }
        this.props.addExam(final)
@@ -132,7 +134,7 @@ const mapStateToProps = ({Exam}) => {
 };
 
 const mapDispatchToProps = {
-    fetchExam, addExam
+    fetchExam, addExam, updateExam
 };
 
 
