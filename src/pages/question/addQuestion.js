@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import { Card, Form, Icon, Input, Button, Select, Alert, Spin   } from 'antd';
 import {addQuestion} from './action'
-
+import { Editor } from '@tinymce/tinymce-react';
 
 const { TextArea } = Input
 const { Option } = Select
@@ -22,6 +22,9 @@ class AddQuestion extends Component {
    handleChange = (e) =>{
        e.target ? this.setState({[e.target.name]: e.target.value}) 
        : this.setState({trueAnswer: e})
+   }
+    handleEditorChange = (e) =>{
+       this.setState({questionText:  e.target.getContent()})
    }
    saveQuestion = () => {
        if( this.state.questionText === "" || this.state.answer1 === "" || this.state.answer2 === "" || this.state.answer3 === "" || this.state.answer4 === "" 
@@ -62,7 +65,23 @@ class AddQuestion extends Component {
 
                             <Form layout="horizontal"  labelCol= {{span: 4}} wrapperCol= {{span: 20}}>
                                 <Form.Item label="Soru: " horizontal>
-                                    <TextArea rows={4} placeholder="Lütfen Sorunuz Giriniz..." name="questionText" value={this.state.questionText} onChange={this.handleChange}/>
+                                    <Editor
+                                        init={{
+                                        height: 500,
+                                        menubar: true,
+                                        plugins: [
+                                            'advlist autolink lists link image charmap print preview anchor',
+                                            'searchreplace visualblocks code fullscreen',
+                                            'insertdatetime media table paste code help wordcount'
+                                        ],
+                                        toolbar:
+                                            'undo redo | formatselect | bold italic backcolor | \
+                                            alignleft aligncenter alignright alignjustify | \
+                                            bullist numlist outdent indent | removeformat | help'
+                                        }}
+                                        onChange={this.handleEditorChange}
+                                    />
+                                    
                                 </Form.Item>
                                 <Form.Item label="Cevap 1: " horizontal>
                                     <Input placeholder="Lütfen Cevabı Giriniz..." name="answer1" value={this.state.answer1} onChange={this.handleChange}/>
@@ -111,3 +130,7 @@ const mapDispatchToProps = {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddQuestion);
+
+/*
+    <TextArea rows={4} placeholder="Lütfen Sorunuz Giriniz..." name="questionText" value={this.state.questionText} onChange={this.handleChange}/>
+*/

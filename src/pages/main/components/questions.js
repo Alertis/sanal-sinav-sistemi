@@ -12,7 +12,9 @@ class Questions extends Component {
         return(
             <div className="questions">
                 <Table dataSource={this.props.questions} loading={this.props.loading } style={{backgroundColor:"white"}}>
-                    <Column title="Soru" dataIndex="questionText" key="questionText" />
+                    <Column title="Soru" dataIndex="questionText" key="questionText" render={(questionText)=>(
+                        <div dangerouslySetInnerHTML={{ __html: questionText}}></div>
+                    )} />
                     <Column title="Cevaplar" dataIndex="choices" key="choices" render={(choices, {rightAnswerIndex}) => (
                         <span>
                             {choices.map((choice,i) => (

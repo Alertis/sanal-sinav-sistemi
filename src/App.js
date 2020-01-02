@@ -93,10 +93,6 @@ class App extends Component {
                     <Menu.Item key="4">
                       <NavLink to="report"> <Icon type="pie-chart" /> <span>Raporlar</span></NavLink>
                     </Menu.Item>
-                    <Menu.Item key="5">
-                      <Icon type="setting" />
-                      <span>Ayarlar</span>
-                    </Menu.Item>
                 </Menu>
             </Sider>
             <Layout>

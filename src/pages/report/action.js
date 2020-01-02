@@ -8,6 +8,11 @@ export const FETCH_REPORTS_PENDING = 'FETCH_REPORTS_PENDING';
 export const FETCH_REPORTS_FULFILLED = 'FETCH_REPORTS_FULFILLED';
 export const FETCH_REPORTS_REJECTED = 'FETCH_REPORTS_REJECTED';
 
+export const FETCH_CATEGORY_REPORTS_PENDING = 'FETCH_CATEGORY_REPORTS_PENDING';
+export const FETCH_CATEGORY_REPORTS_FULFILLED = 'FETCH_CATEGORY_REPORTS_FULFILLED';
+export const FETCH_CATEGORY_REPORTS_REJECTED = 'FETCH_CATEGORY_REPORTS_REJECTED';
+
+
 export function addExam (data) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('authorization')}`;
     return dispatch => {
@@ -24,6 +29,16 @@ export function fetchReports () {
         dispatch({
             type : 'FETCH_REPORTS',
             payload : axios.get(`${process.env.REACT_APP_API_BASE}/details`)
+        })
+    }
+}
+
+export function fetchCategoryReports () {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('authorization')}`;
+    return dispatch => {
+        dispatch({
+            type : 'FETCH_CATEGORY_REPORTS',
+            payload : axios.get(`${process.env.REACT_APP_API_BASE}/category`)
         })
     }
 }

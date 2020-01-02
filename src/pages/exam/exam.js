@@ -86,9 +86,9 @@ class Exam extends Component {
                 <div style={{textAlign:"center"}}>
                     {examQ.length > 0 ? 
                         <>
-                             <Title level={3} >  
-                                {examQ[this.state.currentPage-1].questionText}
-                            </Title>
+                             <Title level={3} >
+                                <div dangerouslySetInnerHTML={{ __html:examQ[this.state.currentPage-1].questionText}}/>
+                             </Title>  
                             <Divider />
                             <Row gutter={[16, 16]}>
                                 {examQ[this.state.currentPage-1].choices.map((choice,i) => {

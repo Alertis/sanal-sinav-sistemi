@@ -1,44 +1,22 @@
 import React, { Component } from 'react';
 import {Tabs, Icon, Card} from 'antd';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar} from 'recharts';
-import {fetchReports} from './action'
+import {fetchReports, fetchCategoryReports} from './action'
 import {connect} from 'react-redux'
 
 
 const { TabPane } = Tabs;
 
-const lineData = [
-  {
-    name: 'Page A', uv: 4000
-  },
-  {
-    name: 'Page B', uv: 3000
-  },
-  {
-    name: 'Page C', uv: 2000
-  },
-  {
-    name: 'Page D', uv: 2780
-  },
-  {
-    name: 'Page E', uv: 1890
-  },
-  {
-    name: 'Page F', uv: 2390
-  },
-  {
-    name: 'Page G', uv: 3490
-  },
-];
-
-
 class Report extends Component {
   state={
     timeData:[],
+    catData:[],
     loading:false
   }
    componentDidMount(){
      this.props.fetchReports();
+     this.props.fetchCategoryReports();
+
    }
    componentWillReceiveProps(nextState){
      if(nextState.Report){
@@ -53,20 +31,30 @@ class Report extends Component {
         this.setState({timeData})
 
        }
+       if(nextState.Report.reportsCategory.length>0){
+         let catData = [];
+         for(let i=0; i<nextState.Report.reportsCategory.length; i++){
+           catData.push({
+             name: nextState.Report.reportsCategory[i].name,
+             adet: nextState.Report.reportsCategory[i].trueAnswer
+           })
+         }
+        this.setState({catData})
+
+       }
        this.setState({loading: nextState.Report.loading})
      }
-     console.log()
    }
     render() {
       console.log(this.state.timeData)
         return(
             <div className="report">
                 <Card>
-                      <Tabs defaultActiveKey="2">
+                      <Tabs defaultActiveKey="1">
                         <TabPane tab={ <span> <Icon type="line-chart" /> Zaman Grafiği </span> } key="1" >
                             <LineChart
-                                width={500}
-                                height={300}
+                                width={900}
+                                height={500}
                                 data={this.state.timeData}
                                 margin={{
                                 top: 5, right: 30, left: 20, bottom: 5,
@@ -82,9 +70,9 @@ class Report extends Component {
                         </TabPane>
                         <TabPane tab={ <span> <Icon type="bar-chart" /> Kategori Grafiği </span> } key="2" >
                             <BarChart
-                                width={500}
-                                height={300}
-                                data={lineData}
+                                width={900}
+                                height={500}
+                                data={this.state.catData}
                                 margin={{
                                 top: 5, right: 30, left: 20, bottom: 5,
                                 }}
@@ -94,7 +82,7 @@ class Report extends Component {
                                 <YAxis />
                                 <Tooltip />
                                 <Legend />
-                                <Bar dataKey="uv" fill="#82ca9d" />
+                                <Bar dataKey="adet" fill="#82ca9d" />
                             </BarChart>
                         </TabPane>
                     </Tabs>
@@ -113,7 +101,7 @@ const mapStateToProps = ({Report}) => {
 };
 
 const mapDispatchToProps = {
-    fetchReports
+    fetchReports,fetchCategoryReports
 };
 
 
