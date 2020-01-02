@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { Card, Pagination, Typography, Button, Row, Col, Divider, Icon, Spin } from 'antd';
-import Countdown from "react-countdown-now";
+import { Card, Pagination, Typography, Button, Row, Col, Divider, Icon, Spin, Modal, Statistic } from 'antd';
 import {fetchExam} from './action';
+import {addExam} from '../report/action';
+
 import {connect} from 'react-redux'
 
 const { Title } = Typography;
+const { Countdown } = Statistic;
+const deadline = Date.now() + 1000 * 60 * 60; // Moment is also OK
+
 class Exam extends Component {
     state={
         questions:[],
@@ -12,8 +16,10 @@ class Exam extends Component {
         currentPage: 1,
         finishDate: Date.now(),
         loading:false,
+        finish: false,
         trueAnswer:0,
-        falseAnswer:0
+        falseAnswer:0,
+        visible: false
     }
    componentDidMount(){
        this.props.fetchExam()
@@ -28,10 +34,10 @@ class Exam extends Component {
 
        }
        nextState.Exam && this.setState({loading: nextState.Exam.loading})
+       console.log(nextState)
    }
    nextQuestion = (page,pageSize) =>{
         this.setState({currentPage: page})
-        console.log(this.state.answers)
    }
    setAnswer = (indis, answer) =>{
        let answers = this.state.answers
@@ -42,14 +48,24 @@ class Exam extends Component {
        let trueAnswer=0
        let falseAnswer = 0
        for(let i = 0; i < this.state.questions.questions.length; i++){
-           console.log(this.state.questions.questions[i].rightAnswer, this.state.answers[i])
            if(this.state.questions.questions[i].rightAnswerIndex === this.state.answers[i])
                 trueAnswer = trueAnswer + 1;
             else
                 falseAnswer = falseAnswer + 1
        }
-        console.log("Doğru Cevap Sayısı: "+trueAnswer+" Yanlış Cevap Sayısı: "+falseAnswer)
-        console.log(this.state.questions.questions, this.state.answers)
+       this.setState({finish: true, trueAnswer, falseAnswer, visible: true})
+   }
+   hideModal = () => {
+       let final = {
+           countOfTrueAnswers:this.state.trueAnswer,
+           countOfFalseAnswers:this.state.falseAnswer,
+           score:this.state.trueAnswer*2,
+           examDate: Date.now(),
+           user: localStorage.getItem("username") 
+       }
+       this.props.addExam(final)
+       this.setState({visible: false})
+       window.location.href="/"
    }
     render() {
         let examQ = this.state.questions.questions ? this.state.questions.questions : []
@@ -58,8 +74,9 @@ class Exam extends Component {
             <div className="exam">
                  {this.state.loading ? 
                     <Spin indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />} tip="Yükleniyor..." /> :
+                    
               <Card title={
-                  <Countdown date={this.state.finishDate} />
+                   <Countdown title="" value={deadline} onFinish={this.answerControl} />
               } extra={ 
                 <Pagination showQuickJumper onChange={this.nextQuestion} current={this.state.currentPage} pageSize={1} total={examQ.length} /> 
               }>
@@ -89,6 +106,19 @@ class Exam extends Component {
                
               </Card>
             }
+            <Modal
+                title="Sınav Sonuçları"
+                visible={this.state.visible}
+                okText="Tamam"
+                footer ={<Button type="primary" size="large" onClick={this.hideModal}>Tamam !</Button>}
+                >
+                <p>Tebrikler sınavı başarı ile tamamladınız. Sınav sonucunuz;</p>
+                <p>Doğru cevap sayısı: {this.state.trueAnswer} </p>
+                <p>Yanlış cevap sayısı: {this.state.falseAnswer} </p>
+                <p>Puanınız: {this.state.trueAnswer * 2} </p>
+
+                
+            </Modal>
             </div>
            
         );
@@ -102,7 +132,7 @@ const mapStateToProps = ({Exam}) => {
 };
 
 const mapDispatchToProps = {
-    fetchExam
+    fetchExam, addExam
 };
 
 
