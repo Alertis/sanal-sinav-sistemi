@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {Tabs, Icon, Card} from 'antd';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar} from 'recharts';
+import {fetchReports} from './action'
+import {connect} from 'react-redux'
+
 
 const { TabPane } = Tabs;
 
@@ -28,9 +31,34 @@ const lineData = [
   },
 ];
 
+
 class Report extends Component {
-   
+  state={
+    timeData:[],
+    loading:false
+  }
+   componentDidMount(){
+     this.props.fetchReports();
+   }
+   componentWillReceiveProps(nextState){
+     if(nextState.Report){
+       if(nextState.Report.reports.length>0){
+         let timeData = [];
+         for(let i=0; i<nextState.Report.reports.length; i++){
+           timeData.push({
+             name: nextState.Report.reports[i].examDate,
+             uv: nextState.Report.reports[i].score
+           })
+         }
+        this.setState({timeData})
+
+       }
+       this.setState({loading: nextState.Report.loading})
+     }
+     console.log()
+   }
     render() {
+      console.log(this.state.timeData)
         return(
             <div className="report">
                 <Card>
@@ -39,7 +67,7 @@ class Report extends Component {
                             <LineChart
                                 width={500}
                                 height={300}
-                                data={lineData}
+                                data={this.state.timeData}
                                 margin={{
                                 top: 5, right: 30, left: 20, bottom: 5,
                                 }}
@@ -52,7 +80,7 @@ class Report extends Component {
                                 <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
                             </LineChart>
                         </TabPane>
-                        <TabPane tab={ <span> <Icon type="bar-chart" /> Sınav Grafiği </span> } key="2" >
+                        <TabPane tab={ <span> <Icon type="bar-chart" /> Kategori Grafiği </span> } key="2" >
                             <BarChart
                                 width={500}
                                 height={300}
@@ -78,4 +106,15 @@ class Report extends Component {
     }
 } 
 
-export default Report;
+const mapStateToProps = ({Report}) => {
+	return {
+        Report
+	}
+};
+
+const mapDispatchToProps = {
+    fetchReports
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Report);
