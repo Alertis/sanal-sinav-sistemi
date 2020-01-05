@@ -91,7 +91,7 @@ git clone https://github.com/Alertis/sanal-sinav-sistemi
 2. NPM paketlerini kurun
 ```sh
 npm install
-
+```
 
 <!-- CONTACT -->
 ## Iletişim
@@ -99,6 +99,7 @@ npm install
 Osman Yavuz Demir - [@alertisx](https://twitter.com/Alertisx) - osmanyavuzdemir96@gmail.com
 
 Proje Linki: [https://github.com/Alertis/sanal-sinav-sistemi](https://github.com/Alertis/sanal-sinav-sistemi)
+
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [build-shield]: https://img.shields.io/badge/build-passing-brightgreen.svg?style=flat-square
