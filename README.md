@@ -1,68 +1,110 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- PROJECT SHIELDS -->
+[![Build Status][build-shield]]()
+[![Contributors][contributors-shield]]()
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
+![Twitter][twitter-shield]
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/Alertis/kodiainternproject">
+    <h3></h3>
+  </a>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+  <h3 align="center">Sanal Sınav Sistemi</h3>
 
-### `npm test`
+  <p align="center">
+    Manisa Celal Bayar Üniversitesi - Yazılım Mühendisliği Yazılım Sınama Dersi Projesi
+    <br />
+    <a href="https://agitated-mcnulty-e705c3.netlify.com"> Demo için tıklayın.</a>
+    <br />
+    ·
+    <a href="https://github.com/Alertis/sanal-sinav-sistemi/issues">Bugları raporla</a>
+    ·
+    <a href="https://github.com/Alertis/sanal-sinav-sistemi/issues">İstekte bulun</a>
+  </p>
+</p>
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+<!-- TABLE OF CONTENTS -->
+## İçerik
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* [Proje Hakkında](#proje-hakkında)
+  * [Demo Kullanıcı Bilgileri](#kullanıcı-bilgileri)
+  * [API Projesi](#kullanıcı-bilgileri)
+  * [Kullanılan Paketler](#api-projesi)
+* [Başlangıç](#başlangıç)
+  * [Gereksinimler](#gereksinimler)
+  * [Kurulum](#kurulum)
+* [İletişim](#iletişim)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Proje Hakkında
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Uygulama içerisinde öğrenci ve öğretmen olmak üzere iki tip giriş bulunmaktadır. Öğretmen sisteme soru girebilir. Girilen soruları silebilir veya Rapor sayfasından öğrencilerin sınav durumlarını görüntüleyebilir. Öğrenci ise öğretmen tarafından girilen sorular ile sınava girebilir, daha önce girdiği sınav sonuçlarını görebilir veya raporlar sayfasından kendi durumunu gözlemleyebilir.
 
-### `npm run eject`
+### Kullanıcı Bilgileri
+Öğretmen ;
+* Kullanıcı Adı: deneme
+* Şifre: deneme
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Öğrenci; 
+* Kullanıcı Adı: isatoltar
+* Şifre: isatoltar45
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### API Projesi
+* [YazilimSinamaBackendProjesi](https://github.com/toltarisa/YazilimSinamaBackendProjesi)7
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Kullanılan Paketler
+Uygulama geliştirme sırasında aşağıdaki paketlerden yararlanılmıştır.
+* [React](https://reactjs.org/)
+* [React Redux](https://redux.js.org/basics/usage-with-react)
+* [React Router Dom](https://www.npmjs.com/package/react-router-dom)
+* [Ant Design](https://ant.design/docs/react/introduce)
+* [Moment](https://www.npmjs.com/package/moment)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<!-- GETTING STARTED -->
+## Başlangıç
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Projeyi kendi bilgisayarınıza kurmak için aşağıdaki adımları takip edebilirsiniz.
 
-### Code Splitting
+### Gereksinimler
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Projeyi çalıştırabilmek için aşağıdaki paketleri yüklemeniz gerekmekte
+* npm
+```sh
+npm install npm@latest -g
+```
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### Kurulum
 
-### Making a Progressive Web App
+1. Github reposunu klonlayın
+```sh
+git clone https://github.com/Alertis/sanal-sinav-sistemi
+```
+2. NPM paketlerini kurun
+```sh
+npm install
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-### Advanced Configuration
+<!-- CONTACT -->
+## Iletişim
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Osman Yavuz Demir - [@alertisx](https://twitter.com/Alertisx) - osmanyavuzdemir96@gmail.com
 
-### Deployment
+Proje Linki: [https://github.com/Alertis/sanal-sinav-sistemi](https://github.com/Alertis/sanal-sinav-sistemi)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+<!-- MARKDOWN LINKS & IMAGES -->
+[build-shield]: https://img.shields.io/badge/build-passing-brightgreen.svg?style=flat-square
+[contributors-shield]: https://img.shields.io/badge/contributors-1-orange.svg?style=flat-square
+[license-shield]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
+[license-url]: https://choosealicense.com/licenses/mit
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/osmanyavuzdemir/
+[twitter-shield]: https://img.shields.io/twitter/follow/Alertisx?label=Twitter&style=social
