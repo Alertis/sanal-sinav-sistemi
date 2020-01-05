@@ -36,6 +36,7 @@
 * [Proje Hakkında](#proje-hakkında)
   * [Demo Kullanıcı Bilgileri](#kullanıcı-bilgileri)
   * [API Projesi](#kullanıcı-bilgileri)
+  * [Ekran Görüntüleri](#ekran-görüntüleri)
   * [Kullanılan Paketler](#api-projesi)
 * [Başlangıç](#başlangıç)
   * [Gereksinimler](#gereksinimler)
@@ -56,7 +57,13 @@ Uygulama içerisinde öğrenci ve öğretmen olmak üzere iki tip giriş bulunma
 * Şifre: isatoltar45
 
 ### API Projesi
-* [YazilimSinamaBackendProjesi](https://github.com/toltarisa/YazilimSinamaBackendProjesi)7
+* [YazilimSinamaBackendProjesi](https://github.com/toltarisa/YazilimSinamaBackendProjesi)
+
+### Ekran Görüntüleri
+<img style="border:3px solid #000;" src="./screenshots/1.jpeg" width="250"/>
+<img style="border:3px solid #000;" src="./screenshots/2.jpeg" width="250"/>
+<img style="border:3px solid #000;" src="./screenshots/3.jpeg" width="250"/>
+<img style="border:3px solid #000;" src="./screenshots/4.jpeg" width="250"/>
 
 ### Kullanılan Paketler
 Uygulama geliştirme sırasında aşağıdaki paketlerden yararlanılmıştır.
